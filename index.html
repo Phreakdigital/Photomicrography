@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Antarctica: The Invisible World — Photomicrography Expedition</title>
+  <meta name="description" content="Photomicrography expedition to Antarctica: focus-stacked mosaics revealing the invisible life beneath the ice. Support the journey and get art rewards." />
+  <meta property="og:title" content="Antarctica: The Invisible World" />
+  <meta property="og:description" content="Help bring back art from the unseen world beneath Antarctic ice — photomicrographs, film, and prints." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/og-image.jpg" />
+  <meta name="theme-color" content="#0b1220" />
+  <style>
+    :root{ --bg:#0b1220; --panel:#11182a; --text:#e8eefc; --muted:#a9b4d0; --accent:#6fd2ff; --accent-2:#8cffc7; --shadow:0 10px 30px rgba(0,0,0,.45); --radius:18px; --navh:64px; --maxw:1080px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:#000; color:var(--text); line-height:1.6; letter-spacing:.2px}
+    a{color:var(--accent)}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(10px);background:rgba(11,18,32,.65);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+    .brand .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#76d1ff,#8cffc7);box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.3px}
+    .navlinks{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .navlinks a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .navlinks a:hover{color:var(--text)}
+    .btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;padding:10px 14px;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,.12)}
+    .btn-primary{background:linear-gradient(180deg,#6fd2ff,#2aa9ff);color:#000;border:none;box-shadow:0 10px 24px rgba(111,210,255,.3)}
+    .btn-primary, .btn-primary:link, .btn-primary:visited, .btn-primary:hover, .btn-primary:active{ color:#000 !important; }
+
+    /* FULL-VIEWPORT SLIDESHOW */
+    .viewport{position:relative;height:calc(100svh - var(--navh));background:#000;overflow:hidden}
+    #slideshow{position:absolute;inset:0;}
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s ease}
+    .slide.active{opacity:1}
+    .slide img{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+    .slide figcaption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;font-size:12px;color:#dfe7ff;display:none}
+
+    .controls{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:8px;pointer-events:none}
+    .ctrl{pointer-events:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);width:48px;height:48px;display:grid;place-items:center;border-radius:12px;cursor:pointer}
+    .ctrl:hover{background:rgba(255,255,255,.12)}
+    .dotbar{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;justify-content:center;pointer-events:none}
+    .dot{pointer-events:auto;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;border:1px solid rgba(0,0,0,.3)}
+    .dot.active{background:var(--accent)}
+
+    .slab{margin:42px 0}
+    h2{font-size:clamp(22px,3.6vw,32px);margin:0 0 10px}
+    h3{font-size:18px;margin:16px 0 8px}
+    p{margin:10px 0}
+    ul{margin:12px 0;padding-left:20px}
+    li{margin:6px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+
+    footer{padding:40px 0 60px;color:#a9b4d0}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+      /* Inline story image */
+    .inline-fig{float:right;width:min(220px,40%);margin:0 0 10px 14px;text-align:center}
+    .inline-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+    .inline-fig figcaption{font-size:11px;color:#a9b4d0;margin-top:6px}
+    @media (max-width:700px){.inline-fig{float:none;width:100%;margin:8px 0 12px 0}}
+      /* Inline story image */
+    .inline-fig{float:right;width:min(220px,40%);margin:0 0 10px 14px;text-align:center}
+    .inline-fig img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+    .inline-fig figcaption{font-size:11px;color:#a9b4d0;margin-top:6px}
+    @media (max-width:700px){.inline-fig{float:none;width:100%;margin:8px 0 12px 0}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="Home">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Michael Grindstaff -  Artistic Photomicrography</h1>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#story">Antarctic Expedition</a>
+        <a href="#support">Support</a>
+        <a href="faq.html">FAQ</a>
+        <a id="donateTop" class="btn btn-primary" href="#" target="_blank" rel="noopener">Support on Indiegogo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Full-window slideshow -->
+    <section class="viewport" aria-label="Slideshow">
+      <figure id="slideshow" tabindex="0">
+        <div class="controls" aria-hidden="false">
+          <button class="ctrl" id="prevBtn" aria-label="Previous image" title="Previous (←)">◀</button>
+          <div style="display:flex; align-items:center; gap:8px">
+            <button class="ctrl" id="playPauseBtn" aria-label="Play/Pause" title="Play / Pause">⏯</button>
+            <button class="ctrl" id="fullscreenBtn" aria-label="Fullscreen" title="Fullscreen">⤢</button>
+          </div>
+          <button class="ctrl" id="nextBtn" aria-label="Next image" title="Next (→)">▶</button>
+        </div>
+        <div class="dotbar" id="dots" aria-hidden="false"></div>
+      </figure>
+    </section>
+
+    <!-- Project Title moved below slideshow -->
+    <section class="wrap" id="project-title" aria-label="Project Title">
+      <h1 class="title" style="margin:22px 0 8px 0">Antarctica: The Invisible World</h1>
+    </section>
+
+    <!-- Story & Support -->
+    <section id="story" class="slab wrap">
+      <div class="grid-2">
+        <article class="panel">
+          <h2>Story</h2>
+          <figure class="inline-fig">
+            <img src="penguins-5556289_1280.jpg" alt="Penguins on Antarctic ice" loading="lazy">
+            <figcaption>Photo: sevenseassailing</figcaption>
+          </figure>
+          <p>Hi, I’m <strong>Michael Grindstaff</strong> — a sailor, explorer, and artist with a lifelong fascination for the hidden worlds around us. Through photomicrography, I reveal life too small to see with the naked eye by creating <em>focus‑stacked mosaics</em> — intricate artworks built from hundreds of images. The result is a level of detail and beauty no human eye could ever see directly.</p>
+          <p>Now, I have the chance to bring this process to <strong>Antarctica</strong> in December 2025, one of the most extreme and inspiring environments on Earth. Beneath the ice lies a hidden universe of plankton and other organisms that form the foundation of the polar ecosystem. With your support, I can capture this unseen world and bring it back to share — as art, photography, and film.</p>
+          <p>Aboard the private, custom‑built 45′ sailing yacht <em>Iona</em>, captained by polar explorer and friend <strong>John Verbeck</strong>, we will depart Tierra del Fuego and cross the <strong>Drake Passage</strong> to reach the Antarctic Peninsula. John has made this trip on two previous occasions. I will serve as crew, artist, and scientist.</p>
+        </article>
+        <aside class="panel" id="support">
+          <h3>What We Need & What You Get</h3>
+          <figure class="inline-fig">
+            <img src="9251553_1280.jpg" alt="Expedition image" loading="lazy">
+          </figure>
+          <p>To make this expedition possible, I need about <strong>$6,000</strong> in funding. Here’s where it goes:</p>
+          <ul>
+            <li><strong>Essential Antarctic gear:</strong> A dry suit for diving, specialized cold‑water dive gear, a sailing suit for harsh weather, insulated layers, and technical clothing.</li>
+            <li><strong>Microscopy equipment:</strong> A new microscope camera and objectives to capture high‑resolution images and video.</li>
+            <li><strong>Field‑ready power system:</strong> A custom Pelican‑case setup with batteries, DC converters, and lighting to run the microscope and laptop in remote conditions.</li>
+            <li><strong>Expedition contribution:</strong> Supporting overall costs of joining the voyage.</li>
+          </ul>
+          <p>Backer perks include digital downloads, signed archival prints, behind‑the‑scenes updates, your name in the film credits, and private screenings/talks after the expedition.</p>
+          <div class="support" style="margin-top:10px">
+            <a id="donateMid" href="#" target="_blank" rel="noopener" class="btn btn-primary">Contribute on Indiegogo</a>
+            <button class="btn" id="copyLinkBtn">Copy Campaign Link</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="slab wrap">
+      <div class="grid-2">
+        <div class="panel">
+          <h2>The Impact</h2>
+          <figure class="inline-fig">
+            <img src="682768_1280.jpg" alt="Antarctic micro world impact" loading="lazy">
+            <figcaption>Photo: Riccarelli</figcaption>
+          </figure>
+          <p>This project combines science, art, and exploration. By revealing the unseen beauty of microscopic life, I want to spark curiosity and deepen our connection to the natural world.</p>
+          <ul>
+            <li>Help capture and share imagery of Antarctic life that has never been seen this way before.</li>
+            <li>Provide educational material for schools, aquariums, and museums.</li>
+            <li>Create art that celebrates the wonder of nature and brings the invisible into focus.</li>
+          </ul>
+          <p>I’ve been refining these techniques for years, building large‑scale focus‑stacked mosaics of marine life. This expedition brings the process to the edge of the Earth.</p>
+        </div>
+        <div class="panel">
+          <h2>Risks & Challenges</h2>
+          <figure class="inline-fig">
+            <img src="iceberg-9729316_1280.jpg" alt="Iceberg in Antarctic waters" loading="lazy">
+            <figcaption>Photo: astize</figcaption>
+          </figure>
+          <p>Antarctica is one of the harshest environments on the planet. The risks include extreme weather, equipment failure, and the challenges of working at sea.</p>
+          <p><strong>What qualifies me to meet these challenges?</strong></p>
+          <ul>
+            <li>I live and sail on my own yacht, preparing me for life on the water.</li>
+            <li>Years of microscopy experience and the technical skills to build and troubleshoot my own systems.</li>
+            <li>I thrive on adapting, problem‑solving, and making things work in difficult conditions.</li>
+          </ul>
+          <p>I can’t eliminate the risks — but I have the skills and determination to overcome them.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <div class="grid-2">
+        <div>
+          <p>© <span id="year"></span> Michael Grindstaff. All rights reserved.</p>
+        </div>
+        <div style="text-align:right">
+          <p><a id="donateFooter" class="btn btn-primary" href="#" target="_blank" rel="noopener">Back it on Indiegogo</a></p>
+          <small>Questions? <a href="mailto:michael.grindstaff@gmail.com">Email me</a>.</small>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Silent image list used by the slideshow (filenames only). -->
+  <script id="image-list" type="application/json">
+  [
+    "20190730_184256.jpg",
+    "Amoth_symm_FB.jpg",
+    "BigWaspPhone4.jpg",
+    "BlueWeevilFinal2.jpg",
+    "BrownMoth_4web.jpg",
+    "BrownWeevil.jpg",
+    "FishEggsonSeaweed_4web.jpg",
+    "IsthmiaD3_4web.jpg",
+    "IsthmiaD4_4web.jpg",
+    "OchreStarLegEnd_ad_INDIEj.jpg",
+    "PurpleFlower4web.jpg",
+    "PurpleUrchin2_INDIE.jpg",
+    "Salt3_INDIE.jpg",
+    "SwallowtailFace4web.jpg",
+    "ThistlePollen.jpg",
+    "WhiteSpottedSandFlea4web.jpg",
+    "fern2.jpg",
+    "newgamm_INDIE.jpg",
+    "unknownArthro2.jpg"
+  ]
+  </script>
+
+  <script>
+    // ===================== CONFIG =====================
+    const INDIEGOGO_URL = "https://www.indiegogo.com/projects/through-the-microscope-an-antarctic-journey/x/38748755#/";
+
+    // ===================== Helpers =====================
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function setDonateLinks(){
+      ["donateTop","donateMid","donateFooter"].forEach(id=>{ const el = document.getElementById(id); if(el){ el.href = INDIEGOGO_URL; } });
+    }
+
+    function normalize(list){
+      return (list||[]).map(s => (s||'').trim()).filter(Boolean).map(s => {
+        if(/^https?:\/\//i.test(s)) return s;
+        if(s.startsWith('/')) return s;
+        if(s.startsWith('./')) return s.slice(2);
+        if(/^images\//i.test(s)) return s; // already prefixed
+        return 'images/' + s;              // filenames only → images/<name>
+      });
+    }
+
+    function readImageListFromScript(){
+      const el = document.getElementById('image-list'); if(!el) return [];
+      const raw = el.textContent.trim(); if(!raw) return [];
+      try{ const parsed = JSON.parse(raw); if(Array.isArray(parsed)) return parsed; }catch{}
+      return [];
+    }
+
+    // ===================== Slideshow =====================
+    const state = { idx: 0, timer: null, autoplayMs: 4500, images: [] };
+
+    function createSlide(src, i){
+      const fig = document.createElement('figure'); fig.className = 'slide' + (i===0?' active':'');
+      const img = document.createElement('img'); img.loading = 'lazy'; img.alt = `Antarctic photomicrograph ${i+1}`; img.src = src;
+      img.onerror = () => { img.alt = 'Image unavailable'; img.style.opacity = .6; };
+      const cap = document.createElement('figcaption'); cap.textContent = src.split('/').pop();
+      fig.appendChild(img); fig.appendChild(cap); return fig;
+    }
+
+    function renderSlideshow(){
+      const host = document.getElementById('slideshow'); $$('.slide', host).forEach(n=>n.remove());
+      state.images.forEach((src,i)=> host.appendChild(createSlide(src,i)) );
+      renderDots(); go(state.idx);
+    }
+
+    function renderDots(){ const dots = document.getElementById('dots'); dots.innerHTML = ''; state.images.forEach((_,i)=>{ const d=document.createElement('button'); d.className='dot'+(i===state.idx?' active':''); d.setAttribute('aria-label',`Go to image ${i+1}`); d.addEventListener('click',()=>go(i)); dots.appendChild(d); }); }
+
+    function go(i){ if(!state.images.length) return; state.idx=(i+state.images.length)%state.images.length; const host=document.getElementById('slideshow'); $$('.slide', host).forEach((el,n)=> el.classList.toggle('active', n===state.idx)); [state.idx+1,state.idx-1].forEach(j=>{ const k=(j+state.images.length)%state.images.length; const img=$$('.slide img', host)[k]; if(img){ const p=new Image(); p.src=img.src; } }); renderDots(); }
+    function next(){ go(state.idx+1); }
+    function prev(){ go(state.idx-1); }
+    function play(){ if(state.timer) return; state.timer=setInterval(next,state.autoplayMs); updatePlayButton(); }
+    function pause(){ clearInterval(state.timer); state.timer=null; updatePlayButton(); }
+    function togglePlay(){ state.timer? pause(): play(); }
+    function updatePlayButton(){ const b=document.getElementById('playPauseBtn'); b.textContent= state.timer? '⏸':'⏯'; b.setAttribute('aria-label', state.timer? 'Pause':'Play'); }
+
+    function enableKeyboard(){ window.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); if(e.key===' '){ e.preventDefault(); togglePlay(); } if(e.key.toLowerCase()==='f') fullscreen(); }); }
+    function fullscreen(){ const el=document.getElementById('slideshow'); if(!document.fullscreenElement){ el.requestFullscreen?.(); } else { document.exitFullscreen?.(); } }
+    function bindControls(){ document.getElementById('prevBtn').addEventListener('click', prev); document.getElementById('nextBtn').addEventListener('click', next); document.getElementById('playPauseBtn').addEventListener('click', togglePlay); document.getElementById('fullscreenBtn').addEventListener('click', fullscreen); const l=document.getElementById('copyLinkBtn'); if(l) l.addEventListener('click', copyLink); }
+    async function copyLink(){ try{ await navigator.clipboard.writeText(INDIEGOGO_URL); alert('Campaign link copied to clipboard!'); } catch{ prompt('Copy this campaign link:', INDIEGOGO_URL); } }
+
+    // Adjust viewport height based on actual header height
+    function setNavHeightVar(){ const nav = document.querySelector('header .nav'); const h = nav ? nav.offsetHeight : 64; document.documentElement.style.setProperty('--navh', h + 'px'); }
+
+    async function init(){
+      setDonateLinks();
+      setNavHeightVar();
+      window.addEventListener('resize', setNavHeightVar);
+      const listFromScript = readImageListFromScript();
+      state.images = normalize(listFromScript);
+      renderSlideshow(); bindControls(); enableKeyboard();
+      document.getElementById('year').textContent = new Date().getFullYear();
+      if(state.images.length) play();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
