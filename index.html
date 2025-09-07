@@ -240,7 +240,7 @@
     }
 
     // ===================== Slideshow =====================
-    const state = { idx: 0, timer: null, autoplayMs: 4500, images: [] };
+    const state = { idx: 0, timer: null, autoplayMs: 10000, images: [] };
 
     function createSlide(src, i){
       const fig = document.createElement('figure'); fig.className = 'slide' + (i===0?' active':'');
